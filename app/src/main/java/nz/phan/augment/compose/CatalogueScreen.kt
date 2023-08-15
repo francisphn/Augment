@@ -69,7 +69,7 @@ import nz.phan.augment.ui.theme.Typography
 fun Catalogue(context: Context) {
     val models = arrayOf(
         Model(1L, "Buzz Lightyear", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(2L, "Rex", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
+        Model(2L, "Rapunzel", "Tangled", R.drawable.rapunzel_thumbnail),
         Model(3L,"Woody", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
         Model(4L, "Jessie", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
         Model(5L, "Wheezy", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
@@ -171,7 +171,7 @@ fun Catalogue(context: Context) {
             Card(
                 shape = RoundedCornerShape(size = 5.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = if ((models.indexOf(it) % 2).toInt() == 0) Color.White else Blue50,
+                    containerColor = if (models.indexOf(it) % 2 == 0) Color.White else Blue50,
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -199,13 +199,15 @@ fun Catalogue(context: Context) {
                         )
                     }
 
-                    Image(
-                        painter = painterResource(id = it.imageId),
-                        contentDescription = "The thumbnail image of ${it.title}",
-                        modifier = Modifier.padding(all = 10.dp).width(40.dp).height(40.dp).clip(
-                            RoundedCornerShape(100)
+                    Box {
+                        Image(
+                            painter = painterResource(id = it.imageId),
+                            contentDescription = "The thumbnail image of ${it.title}",
+                            modifier = Modifier.padding(all = 10.dp).width(40.dp).height(40.dp).clip(
+                                RoundedCornerShape(100)
+                            ).background(if (models.indexOf(it) % 2 != 0) Color.White else Blue50)
                         )
-                    )
+                    }
                 }
             }
         }
