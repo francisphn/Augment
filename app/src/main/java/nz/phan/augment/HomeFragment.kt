@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.material3.Text
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
@@ -22,7 +21,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false).apply {
-            findViewById<ComposeView>(R.id.composeView).setContent {
+            findViewById<ComposeView>(R.id.composeViewHome).setContent {
                 AugmentTheme {
                     val systemUiController = rememberSystemUiController()
 

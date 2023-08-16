@@ -66,7 +66,7 @@ import nz.phan.augment.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun Catalogue(context: Context) {
+fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
     val models = arrayOf(
         Model(1L, "Buzz Lightyear", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
         Model(2L, "Rapunzel", "Tangled", R.drawable.rapunzel_thumbnail),
@@ -178,6 +178,7 @@ fun Catalogue(context: Context) {
                     .padding(vertical = 5.dp)
                     .clickable {
                         interactedElement = it.id
+                        onNavigate?.let { it1 -> it1(0) }
                     }
             ) {
                 Row(
@@ -296,6 +297,6 @@ fun CataloguePreview() {
             )
         }
 
-        Catalogue(context)
+        Catalogue(context, onNavigate = null)
     }
 }

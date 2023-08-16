@@ -18,7 +18,7 @@ class SingleItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_single_item, container, false).apply {
-            findViewById<ComposeView>(R.id.composeView).setContent {
+            findViewById<ComposeView>(R.id.composeViewSingleItem).setContent {
                 AugmentTheme {
                     Catalogue(context = LocalContext.current)
                 }
