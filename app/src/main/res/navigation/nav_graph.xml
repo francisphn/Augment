@@ -9,14 +9,5 @@
         android:id="@+id/homeFragment"
         android:name="nz.phan.augment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_singleItemFragment"
-            app:destination="@id/singleItemFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/singleItemFragment"
-        android:name="nz.phan.augment.SingleItemFragment"
-        android:label="fragment_single_item"
-        tools:layout="@layout/fragment_single_item" />
+        tools:layout="@layout/fragment_home" />
 </navigation>

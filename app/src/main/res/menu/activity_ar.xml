@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuPlanePlacement"
+            app:fontFamily="@font/plexsans_regular"
+            android:title="@string/plane_placement" />
+        <item
+            android:id="@+id/menuInstantPlacement"
+            app:fontFamily="@font/plexsans_regular"
+            android:title="@string/instant_placement" />
+        <item
+            android:id="@+id/menuDepthPlacement"
+            app:fontFamily="@font/plexsans_regular"
+            android:title="@string/depth_placement" />
+        <item
+            android:id="@+id/menuBestPlacement"
+            android:checked="true"
+            app:fontFamily="@font/plexsans_regular"
+            android:title="@string/best_placement" />
+    </group>
+</menu>

@@ -1,6 +1,6 @@
 
 
-package nz.phan.augment.compose
+package nz.phan.augment.compose.screen
 
 
 import android.content.Context
@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
@@ -32,10 +31,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
@@ -46,58 +43,40 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import nz.phan.augment.R
+import nz.phan.augment.data.models
 import nz.phan.augment.entity.Model
 import nz.phan.augment.ui.theme.AugmentTheme
 import nz.phan.augment.ui.theme.Blue50
 import nz.phan.augment.ui.theme.Blue500
 import nz.phan.augment.ui.theme.Typography
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
-    val models = arrayOf(
-        Model(1L, "Buzz Lightyear", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(2L, "Rapunzel", "Tangled", R.drawable.rapunzel_thumbnail),
-        Model(3L,"Woody", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(4L, "Jessie", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(5L, "Wheezy", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(6L, "Mr Potato Head", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(7L, "Mrs Potato Head", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(8L, "Hamm", "Toy Story", R.drawable.buzz_lightyear_thumbnail),
-        Model(9L, "Elsa", "Frozen", R.drawable.buzz_lightyear_thumbnail),
-        Model(9L, "Anna", "Frozen", R.drawable.buzz_lightyear_thumbnail),
-        Model(9L, "Olaf", "Frozen", R.drawable.olaf_frozen_thumbnail),
-        Model(9L, "Kristoff", "Frozen", R.drawable.buzz_lightyear_thumbnail),
+fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>) {
 
-        )
-
-    val initialCategory = "All Disney movies"
+    val initialCategory = stringResource(R.string.all_animals_label)
 
     var interactedElement by remember { mutableStateOf<Long?>(null) }
     var dropdownOpen by remember { mutableStateOf(false) }
-
     var category by remember { mutableStateOf(initialCategory) }
-
-    var isOpen by remember { mutableStateOf(false) } // initial value
-
-    val openCloseOfDropDownList: (Boolean) -> Unit = {
-        isOpen = it
-    }
-    val userSelectedString: (String) -> Unit = {
-        category = it
-    }
+    var displayingModels by remember { mutableStateOf(models.toList()) }
 
     LazyColumn(
         Modifier
@@ -107,7 +86,7 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
         item {
             Box {
                 Text(
-                    text = "Catalogue",
+                    text = stringResource(R.string.catalogue_screen_title),
                     style = Typography.displayLarge,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -137,7 +116,7 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
 
                             Icon(
                                 Icons.Outlined.KeyboardArrowDown,
-                                contentDescription = "Dropdown down icon"
+                                contentDescription = stringResource(R.string.dropdown_down_icon_alt_text)
                             )
                         }
                     }
@@ -150,13 +129,14 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
                         onDismissRequest = { dropdownOpen = false },
                         offset = DpOffset(10.dp, 10.dp)
                     ) {
-                        (listOf(initialCategory) + models.map { it -> it.movieName }.distinct())
+                        (listOf(initialCategory) + models.map { it -> it.categoryName }.distinct())
                             .forEach {
                                 DropdownMenuItem(
                                     modifier = if (it == category) Modifier.background(Blue50) else Modifier,
                                     onClick = {
                                         dropdownOpen = false
                                         category = it
+                                        displayingModels = models.filter { m -> m.categoryName == it || it == initialCategory }
                                     },
                                     text = { Text(text = it, style = Typography.bodyMedium.plus(TextStyle(color = Color.DarkGray,
                                         fontWeight = (if (it == category) FontWeight.Bold else FontWeight.Normal) ))) }
@@ -167,18 +147,21 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
             }
         }
 
-        items(models.filter { it.movieName == category || category == initialCategory }) {
+        items(displayingModels) {
             Card(
                 shape = RoundedCornerShape(size = 5.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = if (models.indexOf(it) % 2 == 0) Color.White else Blue50,
+                    containerColor = if (displayingModels.indexOf(it) % 2 == 0) Color.White else Blue50,
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 5.dp)
+                    .clip(
+                        RoundedCornerShape(size = 5.dp)
+                    )
                     .clickable {
                         interactedElement = it.id
-                        onNavigate?.let { it1 -> it1(0) }
+                        itemAction(it)
                     }
             ) {
                 Row(
@@ -188,13 +171,13 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
                 ) {
                     Column(Modifier.padding(all = 10.dp)) {
                         Text(
-                            text = it.title,
+                            text = it.name,
                             color = Color.DarkGray,
                             style = Typography.labelMedium,
                         )
 
                         Text(
-                            text = it.movieName,
+                            text = it.categoryName,
                             color = Color.DarkGray,
                             style = Typography.labelSmall,
                         )
@@ -203,10 +186,17 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
                     Box {
                         Image(
                             painter = painterResource(id = it.imageId),
-                            contentDescription = "The thumbnail image of ${it.title}",
-                            modifier = Modifier.padding(all = 10.dp).width(40.dp).height(40.dp).clip(
-                                RoundedCornerShape(100)
-                            ).background(if (models.indexOf(it) % 2 != 0) Color.White else Blue50)
+                            contentDescription = "The thumbnail image of ${it.name}",
+                            modifier = Modifier
+                                .padding(all = 10.dp)
+                                .width(80.dp)
+                                .height(80.dp)
+                                .clip(
+                                    RoundedCornerShape(100)
+                                )
+                                .background(if (displayingModels.indexOf(it) % 2 != 0) Color.White else Blue50)
+                            .fillMaxSize(),
+                            contentScale = ContentScale.Crop,
                         )
                     }
                 }
@@ -255,36 +245,13 @@ fun Catalogue(context: Context, onNavigate: ((Int) -> Unit)?) {
     }
 }
 
-
-@Composable
-fun DropDownList(
-    requestToOpen: Boolean = false,
-    list: List<String>,
-    request: (Boolean) -> Unit,
-    selectedString: (String) -> Unit
-) {
-    DropdownMenu(
-        modifier = Modifier.fillMaxWidth(),
-        expanded = requestToOpen,
-        onDismissRequest = { request(false) },
-    ) {
-        list.forEach {
-            DropdownMenuItem(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { request(false) },
-                text = { Text(text = it) }
-            )
-        }
-    }
-}
-
-
 @Preview(showBackground = true)
 @Composable
 fun CataloguePreview() {
     val context = LocalContext.current
 
     AugmentTheme {
+        val navController = rememberNavController()
         val systemUiController = rememberSystemUiController()
 
         SideEffect {
@@ -297,6 +264,12 @@ fun CataloguePreview() {
             )
         }
 
-        Catalogue(context, onNavigate = null)
+        NavHost(navController = navController, startDestination = "catalogueScreen") {
+            composable("catalogueScreen") {
+                Catalogue(context = LocalContext.current,
+                    itemAction = { navController.navigate("singleItemScreen") },
+                    models = models.asList())
+            }
+        }
     }
 }
