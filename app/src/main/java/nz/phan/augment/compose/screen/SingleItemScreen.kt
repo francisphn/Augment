@@ -50,6 +50,7 @@ import nz.phan.augment.compose.shared.drawColoredShadow
 import nz.phan.augment.ArActivity
 import nz.phan.augment.R
 import nz.phan.augment.compose.shared.AnimalProfileImage
+import nz.phan.augment.compose.shared.AnimatedAnimalProfileImage
 import nz.phan.augment.compose.shared.BackButton
 import nz.phan.augment.data.modelResources
 import nz.phan.augment.entity.Model
@@ -83,7 +84,7 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
                                 .padding(top = 10.dp),
                             horizontalArrangement = Arrangement.Center,
                         ) {
-                            AnimalProfileImage(
+                            AnimatedAnimalProfileImage(
                                 it = model,
                                 backgroundColour = Color.White,
                                 size = 240.dp
@@ -148,7 +149,7 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        AnimalProfileImage(
+                        AnimatedAnimalProfileImage(
                             it = model,
                             backgroundColour = Color.White,
                             size = 240.dp
