@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="place_object">Đính con vào một chỗ cố định</string>
+    <string name="new_object">Đính nhân vật vào môi trường</string>
+    <string name="instant_placement">Chế độ Ghim Tức Thì</string>
+    <string name="depth_placement">Chế độ Ghim có tăng cường Chiều Sâu</string>
+    <string name="plane_placement">Chế độ Ghim trên Mặt phẳng</string>
+    <string name="best_placement">Chế độ Ghim tối ưu</string>
+    <string name="all_animals_label">Tất cả các con vật</string>
+    <string name="catalogue_screen_title">Danh sách</string>
+    <string name="dropdown_down_icon_alt_text">Biểu tượng mũi tên chỉ xuống</string>
+    <string name="filter_prefix">Đang xem: %1$s</string>
+    <string name="thumbnail_alt_text">Hình ảnh tượng trưng của %1$s</string>
+    <string name="copyright_notice_title">Thông báo bản quyền</string>
+    <string name="view_in_ar_button_label">Xem trong Thực tế Tăng cường</string>
+    <string name="read_more_on_wikipedia_button_label">Đọc thêm trên Wikipedia</string>
+    <string name="suggestion_label">Bạn hãy thử...</string>
+    <string name="back_button_label">Quay lại</string>
+    <string name="back_icon_alt_text">Biểu tượng quay lại</string>
+    <string name="image_alt_text">Hình ảnh của %1$s</string>
+    <string name="human_face_icon_alt_text">Biểu tượng mặt người</string>
+    <string name="copyright_notice_text">Tất cả hình ảnh động vật ngoại trừ mô hình 3D của chúng đều thuộc 2023 © National Geographic, được sử dụng lại theo học thuyết Sử dụng hợp lý cho mục đích giáo dục.</string>
+    <string name="add_to_environment">Đặt %1$s vào môi trường</string>
+    <string name="fixate_in_one_place">Đính %1$s vào một chỗ cố định</string>
+</resources>

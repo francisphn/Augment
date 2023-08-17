@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Augment</string>
-    <string name="place_object">Fixate character in one place</string>
-    <string name="new_object">Add character to frame</string>
+    <string name="app_name" translatable="false">Augment</string>
+    <string name="place_object">Fixate animal in one place</string>
+    <string name="new_object">Add animal to environment</string>
     <string name="instant_placement">Instant Placement</string>
     <string name="depth_placement">Depth Placement</string>
     <string name="plane_placement">Plane Placement</string>
@@ -9,4 +9,17 @@
     <string name="all_animals_label">All animals</string>
     <string name="catalogue_screen_title">Catalogue</string>
     <string name="dropdown_down_icon_alt_text">Dropdown down icon</string>
+    <string name="filter_prefix">Viewing: %1$s</string>
+    <string name="thumbnail_alt_text">The thumbnail image of %1$s</string>
+    <string name="copyright_notice_title">Copyright notice</string>
+    <string name="view_in_ar_button_label">View in AR</string>
+    <string name="back_icon_alt_text">Back icon</string>
+    <string name="image_alt_text">The image of %1$s</string>
+    <string name="human_face_icon_alt_text">Human face icon</string>
+    <string name="read_more_on_wikipedia_button_label">Read more on Wikipedia</string>
+    <string name="suggestion_label">You may also be interested in...</string>
+    <string name="back_button_label">Back</string>
+    <string name="copyright_notice_text">All animal images except for their 3D models are 2023 © National Geographic, which are reused under the Fair Use doctrine for the purpose of education.</string>
+    <string name="add_to_environment">Add %1$s to environment</string>
+    <string name="fixate_in_one_place">Fixate %1$s in one place</string>
 </resources>

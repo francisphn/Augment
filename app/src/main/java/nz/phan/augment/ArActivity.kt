@@ -1,6 +1,7 @@
 package nz.phan.augment
 
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -86,11 +87,12 @@ class ArActivity : AppCompatActivity(R.layout.activity_ar) {
             }
 
             // Render button name
-            this.text = "Add ${renderingModel.name} to environment"
+            this.text = context.getString(R.string.add_to_environment, renderingModel.name)
 
             setOnClickListener {
+                it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 newModelNode()
-                this.isVisible = false
+                it.isVisible = false
             }
         }
         placeModelButton = findViewById<MaterialButton>(R.id.placeModelButton).apply {
@@ -100,11 +102,12 @@ class ArActivity : AppCompatActivity(R.layout.activity_ar) {
                     systemBarsInsets.bottom + bottomMargin
             }
 
-            this.text = "Fixate ${renderingModel.name} in one place"
+            this.text = context.getString(R.string.fixate_in_one_place, renderingModel.name)
 
             setOnClickListener {
+                it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 placeModelNode()
-                this.isVisible = false
+                it.isVisible = false
             }
         }
 
@@ -145,13 +148,15 @@ class ArActivity : AppCompatActivity(R.layout.activity_ar) {
 
         val renderingInfo = renderingModel.arPlacement
 
+        val glbFileLocation = getResourceUri(renderingInfo!!.resId)
+
         modelIndex = (modelIndex + 1) % models.size
 
         modelNode = ArModelNode(sceneView.engine, renderingInfo.placementMode).apply {
             isSmoothPoseEnable = true
             applyPoseRotation = renderingInfo.applyPoseRotation
             loadModelGlbAsync(
-                glbFileLocation = getResourceUri(renderingInfo.resId),
+                glbFileLocation = glbFileLocation,
                 autoAnimate = true,
                 scaleToUnits = renderingInfo.scaleUnits,
                 // Place the model origin at the bottom center

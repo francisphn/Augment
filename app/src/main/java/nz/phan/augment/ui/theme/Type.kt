@@ -1,6 +1,7 @@
 package nz.phan.augment.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -34,6 +35,7 @@ val ibmPlexSansFamily = FontFamily(
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
+        color = Color.DarkGray,
         fontFamily = ibmPlexSansFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
@@ -42,6 +44,7 @@ val Typography = Typography(
     ),
 
     bodyMedium = TextStyle(
+        color = Color.DarkGray,
         fontFamily = ibmPlexSansFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
@@ -50,6 +53,7 @@ val Typography = Typography(
     ),
 
     titleLarge = TextStyle(
+        color = Color.DarkGray,
         fontFamily = ibmPlexSansFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 22.sp,
@@ -58,6 +62,7 @@ val Typography = Typography(
     ),
 
     titleSmall = TextStyle(
+        color = Color.DarkGray,
         fontFamily = ibmPlexSansFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
@@ -66,6 +71,7 @@ val Typography = Typography(
     ),
 
     displayLarge = TextStyle(
+        color = Color.DarkGray,
         fontFamily = ibmPlexSansFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 30.sp,
@@ -74,6 +80,7 @@ val Typography = Typography(
     ),
 
     labelMedium = TextStyle(
+        color = Color.DarkGray,
         fontFamily = ibmPlexSansFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp,

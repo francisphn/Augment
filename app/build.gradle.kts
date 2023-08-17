@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.0")
     implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation("androidx.datastore:datastore-core:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -77,5 +78,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation("io.github.sceneview:arsceneview:0.10.1")
+
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+
 
 }

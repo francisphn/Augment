@@ -5,6 +5,8 @@ package nz.phan.augment.compose.screen
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,9 +40,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
@@ -49,6 +53,9 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import nz.phan.augment.compose.shared.drawColoredShadow
 import nz.phan.augment.ArActivity
+import nz.phan.augment.R
+import nz.phan.augment.compose.shared.AnimalProfileImage
+import nz.phan.augment.compose.shared.BackButton
 import nz.phan.augment.compose.shared.noRippleClickable
 import nz.phan.augment.data.models
 import nz.phan.augment.entity.Model
@@ -68,24 +75,7 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
             .background(Color.White)
             .padding(horizontal = 20.dp)) {
         item {
-            Row(
-                Modifier
-                    .padding(vertical = 20.dp)
-                    .wrapContentSize()
-                    .noRippleClickable { backAction.invoke() }) {
-                Icon(
-                    Icons.Rounded.ArrowBack,
-                    contentDescription = "Back icon"
-                )
-
-                Text(
-                    text = "Back",
-                    style = Typography.labelMedium,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp)
-                )
-            }
+            BackButton { backAction.invoke() }
         }
 
         item {
@@ -95,18 +85,10 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
                     .padding(top = 10.dp),
                 horizontalArrangement = Arrangement.Center,
             ) {
-                Image(
-                    painter = painterResource(id = model.imageId),
-                    contentDescription = "The image of ${model.name}",
-                    modifier = Modifier
-                        .width(240.dp)
-                        .height(240.dp)
-                        .clip(
-                            RoundedCornerShape(100)
-                        )
-                        .background(Color.White)
-                        .fillMaxSize(),
-                    contentScale = ContentScale.Crop,
+                AnimalProfileImage(
+                    it = model,
+                    backgroundColour = Color.White,
+                    size = 240.dp
                 )
             }
         }
@@ -132,31 +114,36 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
             )
         }
 
-        item {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Button(
-                    onClick = {
-                        val intent = Intent(context, ArActivity::class.java)
-                        intent.putExtra("modelId", model.id)
-                        context.startActivity(intent)
-                    },
-                    modifier = Modifier.padding(top = 30.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Blue500,
-                        contentColor = Color.White
-                    ),
+        if (model.arPlacement != null) {
+            item {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    Row( verticalAlignment = Alignment.CenterVertically ) {
-                        Icon(
-                            Icons.Rounded.Face,
-                            contentDescription = "Dropdown down icon"
-                        )
+                    Button(
+                        onClick = {
+                            val intent = Intent(context, ArActivity::class.java)
+                            intent.putExtra("modelId", model.id)
+                            context.startActivity(intent)
+                        },
+                        modifier = Modifier.padding(top = 30.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Blue500,
+                            contentColor = Color.White
+                        ),
+                    ) {
+                        Row( verticalAlignment = Alignment.CenterVertically ) {
+                            Icon(
+                                Icons.Rounded.Face,
+                                contentDescription = stringResource(R.string.human_face_icon_alt_text)
+                            )
 
 
-                        Text(text = "View in AR", style = Typography.labelMedium, modifier = Modifier.padding(start = 10.dp))
+                            Text(text = stringResource(R.string.view_in_ar_button_label),
+                                style = Typography.labelMedium.plus(
+                                    TextStyle(Color.White)
+                                ), modifier = Modifier.padding(start = 10.dp))
+                        }
                     }
                 }
             }
@@ -170,18 +157,24 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
             )
         }
 
-        item {
-            Text(
-                text = "Read more on Wikipedia",
-                style = Typography.bodyMedium,
-                modifier = Modifier.padding(bottom = 30.dp)
-            )
+        if (model.wikipediaUri != "") {
+            item {
+                Text(
+                    text = stringResource(R.string.read_more_on_wikipedia_button_label),
+                    style = Typography.bodyMedium.plus(TextStyle(textDecoration = TextDecoration.Underline)),
+                    modifier = Modifier.padding(bottom = 30.dp)
+                        .clickable {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(model.wikipediaUri))
+                            context.startActivity(intent)
+                        }
+                )
+            }
         }
 
         item {
             Column {
                 Text(
-                    text = "You may also be interested in...",
+                    text = stringResource(R.string.suggestion_label),
                     style = Typography.titleLarge.plus(TextStyle(fontWeight = FontWeight.Bold)),
                     modifier = Modifier
                         .padding(bottom = 10.dp)
@@ -217,19 +210,11 @@ fun SingleItem(context: Context, model: Model, backAction: () -> Unit,
                                     .height(200.dp)
                                     .background(Color.White)
                             ) {
-                                Image(
-                                    painter = painterResource(id = it.imageId),
-                                    contentDescription = "The thumbnail image of ${it.name}",
-                                    modifier = Modifier
-                                        .padding(all = 10.dp)
-                                        .width(70.dp)
-                                        .height(70.dp)
-                                        .clip(
-                                            RoundedCornerShape(100)
-                                        )
-                                        .background(if (suggestedModels.indexOf(it) % 2 == 0) Color.White else Blue50)
-                                        .fillMaxSize(),
-                                    contentScale = ContentScale.Crop,
+                                AnimalProfileImage(
+                                    it = it,
+                                    backgroundColour = if (suggestedModels.indexOf(it) % 2 == 0)
+                                        Color.White else Blue50,
+                                    size = 70.dp
                                 )
 
                                 Text(
@@ -269,10 +254,17 @@ fun SingleItemPreview() {
         NavHost(navController = navController, startDestination = "singleItemScreen") {
             composable("singleItemScreen") {
                 SingleItem(context,
-                    model = models.first(),
+                    model = Model(
+                        id = 11L,
+                        categoryName = "User",
+                        description = "",
+                        name = "Tiger",
+                        wikipediaUri = "https://en.wikipedia.org/wiki/Tiger",
+                        imageUriAsString = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Echinoderm_collage_2.jpg/220px-Echinoderm_collage_2.jpg"
+                    ),
                     backAction = { navController.popBackStack() },
                     suggestedCharacterAction = { },
-                    models = models.asList())
+                    models = models.toList())
             }
         }
 

@@ -38,7 +38,6 @@
         android:id="@+id/placeModelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/blue500"
         android:gravity="center_vertical|left"
