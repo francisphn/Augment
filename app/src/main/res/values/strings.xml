@@ -17,12 +17,12 @@
     <string name="image_alt_text">The image of %1$s</string>
     <string name="human_face_icon_alt_text">Human face icon</string>
     <string name="read_more_on_wikipedia_button_label">Read more on Wikipedia</string>
-    <string name="suggestion_label">You may also be interested in...</string>
+    <string name="suggestion_label">You may also be interested in…</string>
     <string name="back_button_label">Back</string>
     <string name="copyright_notice_text">All animal images except for their 3D models are 2023 © National Geographic, which are reused under the Fair Use doctrine for the purpose of education.</string>
     <string name="add_to_environment">Add %1$s to environment</string>
     <string name="fixate_in_one_place">Fixate %1$s in one place</string>
-    <string name="user_provided_animal">User-provided animal</string>
+    <string name="user_provided_animal">Your animal</string>
     <string name="animal_name">Animal name</string>
     <string name="animal_description">Animal description</string>
     <string name="https_link_to_an_internet_photo">HTTPS link to an internet photo</string>
@@ -35,10 +35,29 @@
     <string name="save">Save %1$s</string>
     <string name="user">User</string>
     <string name="tiger">Tiger</string>
-    <string name="https_upload_wikimedia_org_wikipedia_commons_thumb_5_52_echinoderm_collage_2_jpg_220px_echinoderm_collage_2_jpg">https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Echinoderm_collage_2.jpg/220px-Echinoderm_collage_2.jpg</string>
+    <string name="https_upload_wikimedia_org_wikipedia_commons_thumb_5_52_echinoderm_collage_2_jpg_220px_echinoderm_collage_2_jpg" translatable="false">https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Echinoderm_collage_2.jpg/220px-Echinoderm_collage_2.jpg</string>
     <string name="add">Add</string>
     <string name="your_own_animal">Your own animal</string>
     <string name="panthera">Panthera</string>
-    <string name="tiger_description">The tiger (Panthera tigris) is the largest living cat species and a \n                member of the genus Panthera. \n                It is most recognisable for its dark vertical stripes on orange fur with a white underside. \n                An apex predator, it primarily preys on ungulates, such as deer and wild boar. \n                It is territorial and generally a solitary but social predator, \n                requiring large contiguous areas of habitat to support its requirements \n                for prey and rearing of its offspring. Tiger cubs stay with their mother \n                for about two years and then become independent, leaving their mother\'s home \n                range to establish their own.</string>
-    <string name="tiger_wikipedia_link">https://en.wikipedia.org/wiki/Tiger</string>
+    <string name="tiger_description">The tiger (Panthera tigris) is the largest living cat species and a member of the genus Panthera. It is most recognisable for its dark vertical stripes on orange fur with a white underside. An apex predator, it primarily preys on ungulates, such as deer and wild boar. It is territorial and generally a solitary but social predator, requiring large contiguous areas of habitat to support its requirements for prey and rearing of its offspring. Tiger cubs stay with their mother for about two years and then become independent, leaving their mother\'s home range to establish their own.</string>
+        <string name="tiger_wikipedia_link">https://en.wikipedia.org/wiki/Tiger</string>
+    <string name="mammal">Mammal</string>
+    <string name="fish">Fish</string>
+    <string name="brown_bear">Brown Bear</string>
+    <string name="ra">Rabbit</string>
+    <string name="rabbit">Rabbit</string>
+    <string name="cat">Cat</string>
+    <string name="eagle">Eagle</string>
+    <string name="giraffe">Giraffe</string>
+    <string name="horse">Horse</string>
+    <string name="shark">Shark</string>
+    <string name="brown_bear_description">The brown bear (Ursus arctos) is a large bear species found across Eurasia and North America.[1][3] In North America, the populations of brown bears are called grizzly bears, while the subspecies that inhabits the Kodiak Islands of Alaska is known as the Kodiak bear. It is one of the largest living terrestrial members of the order Carnivora, rivaled in size only by its closest relative, the polar bear (Ursus maritimus), which is much less variable in size and slightly bigger on average.</string>
+    <string name="brown_bear_wikipedia_link">https://en.wikipedia.org/wiki/Brown_bear</string>
+    <string name="rabbit_description">Rabbits, also known as bunnies or bunny rabbits, are small mammals in the family Leporidae (which also contains the hares) of the order Lagomorpha (which also contains the pikas). Oryctolagus cuniculus includes the European rabbit species and its descendants, the world\'s 305 breeds[1] of domestic rabbit. Sylvilagus includes 13 wild rabbit species, among them the seven types of cottontail. The European rabbit, which has been introduced on every continent except Antarctica, is familiar throughout the world as a wild prey animal and as a domesticated form of livestock and pet. With its widespread effect on ecologies and cultures, the rabbit is, in many areas of the world, a part of daily life—as food, clothing, a companion, and a source of artistic inspiration.</string>
+    <string name="rabbit_wikipedia_link">https://en.wikipedia.org/wiki/Rabbit</string>
+    <string name="cat_description">The cat (Felis catus) is a domestic species of small carnivorous mammal.[1][2] It is the only domesticated species in the family Felidae and is commonly referred to as the domestic cat or house cat to distinguish it from the wild members of the family.[4] Cats are commonly kept as house pets but can also be farm cats or feral cats; the feral cat ranges freely and avoids human contact.[5] Domestic cats are valued by humans for companionship and their ability to kill vermin. About 60 cat breeds are recognized by various cat registries.</string>
+    <string name="cat_wikipedia_link">https://en.wikipedia.org/wiki/Cat</string>
+    <string name="bird">Bird</string>
+    <string name="eagle_description">Eagles are large, powerfully-built birds of prey, with heavy heads and beaks. Even the smallest eagles, such as the booted eagle (Aquila pennata), which is comparable in size to a common buzzard (Buteo buteo) or red-tailed hawk (B. jamaicensis), have relatively longer and more evenly broad wings, and more direct, faster flight – despite the reduced size of aerodynamic feathers. Most eagles are larger than any other raptors apart from some vultures. The smallest species of eagle is the South Nicobar serpent eagle (Spilornis klossi), at 450 g (1 lb) and 40 cm (16 in). The largest species are discussed below. Like all birds of prey, eagles have very large hooked beaks for ripping flesh from their prey, strong, muscular legs, and powerful talons.</string>
+    <string name="eagle_wikipedia_link">https://en.wikipedia.org/wiki/Eagle</string>
 </resources>

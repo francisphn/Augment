@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.res.stringResource
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.google.android.material.button.MaterialButton
@@ -21,8 +22,9 @@ import io.github.sceneview.math.Position
 import io.github.sceneview.utils.doOnApplyWindowInsets
 import io.github.sceneview.utils.getResourceUri
 import io.github.sceneview.utils.setFullScreen
-import nz.phan.augment.data.models
+import nz.phan.augment.data.modelResources
 import nz.phan.augment.entity.Model
+import nz.phan.augment.entity.toModel
 
 class ArActivity : AppCompatActivity(R.layout.activity_ar) {
 
@@ -44,6 +46,8 @@ class ArActivity : AppCompatActivity(R.layout.activity_ar) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val models = modelResources.map { it -> it.toModel(action = { r -> getString(r) } ) }
 
         val extras: Bundle? = intent.extras;
 
@@ -150,7 +154,7 @@ class ArActivity : AppCompatActivity(R.layout.activity_ar) {
 
         val glbFileLocation = getResourceUri(renderingInfo!!.resId)
 
-        modelIndex = (modelIndex + 1) % models.size
+        modelIndex = (modelIndex + 1) % modelResources.size
 
         modelNode = ArModelNode(sceneView.engine, renderingInfo.placementMode).apply {
             isSmoothPoseEnable = true

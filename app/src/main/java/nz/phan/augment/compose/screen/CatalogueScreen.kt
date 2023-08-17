@@ -5,11 +5,7 @@ package nz.phan.augment.compose.screen
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.widget.ToggleButton
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,14 +14,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.material3.Button
@@ -39,7 +32,6 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -51,24 +43,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import nz.phan.augment.R
 import nz.phan.augment.compose.shared.AnimalProfileImage
-import nz.phan.augment.data.models
+import nz.phan.augment.data.modelResources
 import nz.phan.augment.entity.Model
+import nz.phan.augment.entity.toModel
 import nz.phan.augment.ui.theme.AugmentTheme
 import nz.phan.augment.ui.theme.Blue50
 import nz.phan.augment.ui.theme.Blue500
@@ -106,12 +96,12 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                 Modifier
                     .fillMaxSize()
                     .background(Color.White)
-                    .padding(top = 30.dp)
                     .padding(horizontal = 20.dp)) {
                 item {
                     Text(
                         text = stringResource(R.string.catalogue_screen_title),
                         style = Typography.displayLarge,
+                        modifier = Modifier.padding(top = 50.dp)
                     )
                 }
 
@@ -119,7 +109,8 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                     Box(
                         Modifier
                             .fillMaxWidth()
-                            .padding(top = 20.dp, bottom = 20.dp))
+                            .padding(vertical = 20.dp)
+                            .padding(top = 30.dp))
                     {
                         Column {
 
@@ -152,14 +143,14 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                                 onDismissRequest = { dropdownOpen = false },
                                 offset = DpOffset(10.dp, 10.dp)
                             ) {
-                                (listOf(initialCategory) + models.map { it -> it.categoryName }.distinct())
+                                (listOf(initialCategory) + models.map { it -> it.category }.distinct())
                                     .forEach {
                                         DropdownMenuItem(
                                             modifier = if (it == category) Modifier.background(Blue50) else Modifier,
                                             onClick = {
                                                 dropdownOpen = false
                                                 category = it
-                                                displayingModels = models.filter { m -> m.categoryName == it || it == initialCategory }
+                                                displayingModels = models.filter { m -> m.category == it || it == initialCategory }
                                             },
                                             text = { Text(text = it, style = Typography.bodyMedium.plus(TextStyle(color = Color.DarkGray,
                                                 fontWeight = (if (it == category) FontWeight.Bold else FontWeight.Normal) ))) }
@@ -200,7 +191,7 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                                 )
 
                                 Text(
-                                    text = it.categoryName,
+                                    text = it.category,
                                     color = Color.DarkGray,
                                     style = Typography.labelSmall,
                                 )
@@ -234,6 +225,7 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                             style = Typography.bodyMedium,
                             modifier = Modifier
                                 .padding(top = 10.dp)
+                                .padding(bottom = 100.dp)
                                 .fillMaxWidth()
                         )
                     }
@@ -248,6 +240,7 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
 @Composable
 fun CataloguePreview() {
     val context = LocalContext.current
+    val models = modelResources.map { it -> it.toModel(action = { r -> stringResource(id = r) } ) }
 
     AugmentTheme {
         val navController = rememberNavController()

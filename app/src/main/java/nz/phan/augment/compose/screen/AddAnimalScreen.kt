@@ -2,7 +2,6 @@ package nz.phan.augment.compose.screen
 
 import android.content.ClipboardManager
 import android.content.Context
-import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -39,7 +38,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import nz.phan.augment.R
 import nz.phan.augment.compose.shared.BackButton
 
-import nz.phan.augment.data.models
+import nz.phan.augment.data.modelResources
 import nz.phan.augment.ui.theme.AugmentTheme
 import nz.phan.augment.ui.theme.Blue500
 import nz.phan.augment.ui.theme.Typography
@@ -62,7 +61,7 @@ fun AddAnimal(thisAnimalId: Long,
     val model by remember { mutableStateOf(nz.phan.augment.entity.Model(
         id = thisAnimalId,
         name = "",
-        categoryName = defaultCategoryName,
+        category = defaultCategoryName,
         imageUriAsString = "",
         description = "",
     )) }
@@ -200,7 +199,7 @@ fun SettingsPreview() {
 
         NavHost(navController = navController, startDestination = "catalogueScreen") {
             composable("catalogueScreen") {
-                AddAnimal(thisAnimalId = (models.size + 1).toLong(), context = LocalContext.current,
+                AddAnimal(thisAnimalId = (modelResources.size + 1).toLong(), context = LocalContext.current,
                     backAction = { navController.navigate("singleItemScreen") },
                     onSave = { })
             }

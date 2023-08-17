@@ -19,6 +19,7 @@ import nz.phan.augment.ui.theme.Typography
 fun BackButton(backAction: () -> Unit) {
     Row(
         Modifier
+            .padding(top = 30.dp)
             .padding(vertical = 20.dp)
             .wrapContentSize()
             .noRippleClickable { backAction.invoke() }) {

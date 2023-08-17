@@ -9,27 +9,25 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import io.github.sceneview.ar.node.PlacementMode
 import nz.phan.augment.compose.screen.Catalogue
 import nz.phan.augment.compose.screen.AddAnimal
 import nz.phan.augment.compose.screen.SingleItem
-import nz.phan.augment.data.models
-import nz.phan.augment.entity.ArPlacement
+import nz.phan.augment.data.modelResources
 import nz.phan.augment.entity.Model
+import nz.phan.augment.entity.toModel
 
 import nz.phan.augment.ui.theme.AugmentTheme
-import okhttp3.internal.toImmutableList
 
 
 class HomeFragment : Fragment() {
@@ -38,9 +36,12 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_home, container, false).apply {
             findViewById<ComposeView>(R.id.composeViewHome).setContent {
                 AugmentTheme {
+                    val models = modelResources.map { it -> it.toModel(action = { r -> stringResource(id = r) } ) }
+
                     val navController = rememberNavController()
 
                     val systemUiController = rememberSystemUiController()
@@ -49,11 +50,12 @@ class HomeFragment : Fragment() {
 
                     SideEffect {
                         systemUiController.setStatusBarColor(
-                            color = Color.Black
+                            color = Color.Transparent,
+                            darkIcons = true,
                         )
 
                         systemUiController.setNavigationBarColor(
-                            color = Color.White,
+                            color = Color.Transparent,
                             darkIcons = true
                         )
                     }
@@ -114,7 +116,7 @@ class HomeFragment : Fragment() {
                                     animationSpec = tween(500)
                                 )
                             }) { AddAnimal(
-                            thisAnimalId = ((models + customModels).toList().size + 1).toLong(),
+                            thisAnimalId = ((modelResources + customModels).toList().size + 1).toLong(),
                             context = LocalContext.current,
                             backAction = { navController.popBackStack() }
                         ) {
