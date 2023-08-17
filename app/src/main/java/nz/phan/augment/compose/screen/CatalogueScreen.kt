@@ -95,9 +95,9 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
         floatingActionButton = {
             FloatingActionButton(onClick = { settingsAction.invoke() }, containerColor = Blue50) {
                 Row(modifier = Modifier.padding(horizontal = 20.dp)) {
-                    Icon(Icons.Outlined.Add, contentDescription = "Add", modifier = Modifier.padding(end = 5.dp), tint = Color.DarkGray)
+                    Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.add), modifier = Modifier.padding(end = 5.dp), tint = Color.DarkGray)
 
-                    Text("Your own model", style = Typography.labelMedium)
+                    Text(text = stringResource(R.string.your_own_animal), style = Typography.labelMedium)
                 }
             }
                                },

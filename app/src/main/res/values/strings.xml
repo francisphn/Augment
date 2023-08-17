@@ -22,4 +22,23 @@
     <string name="copyright_notice_text">All animal images except for their 3D models are 2023 © National Geographic, which are reused under the Fair Use doctrine for the purpose of education.</string>
     <string name="add_to_environment">Add %1$s to environment</string>
     <string name="fixate_in_one_place">Fixate %1$s in one place</string>
+    <string name="user_provided_animal">User-provided animal</string>
+    <string name="animal_name">Animal name</string>
+    <string name="animal_description">Animal description</string>
+    <string name="https_link_to_an_internet_photo">HTTPS link to an internet photo</string>
+    <string name="add_a_new_animal">Add a new animal</string>
+    <string name="details">Details</string>
+    <string name="paste_link">Paste link</string>
+    <string name="when_you_re_ready">When you\'re ready</string>
+    <string name="your_animal_will_be_saved_as_long_as_the_app_is_not_quit">Your animal will be saved as long as the app is not quit.</string>
+    <string name="your_animal_is_saved">Your animal is saved!</string>
+    <string name="save">Save %1$s</string>
+    <string name="user">User</string>
+    <string name="tiger">Tiger</string>
+    <string name="https_upload_wikimedia_org_wikipedia_commons_thumb_5_52_echinoderm_collage_2_jpg_220px_echinoderm_collage_2_jpg">https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Echinoderm_collage_2.jpg/220px-Echinoderm_collage_2.jpg</string>
+    <string name="add">Add</string>
+    <string name="your_own_animal">Your own animal</string>
+    <string name="panthera">Panthera</string>
+    <string name="tiger_description">The tiger (Panthera tigris) is the largest living cat species and a \n                member of the genus Panthera. \n                It is most recognisable for its dark vertical stripes on orange fur with a white underside. \n                An apex predator, it primarily preys on ungulates, such as deer and wild boar. \n                It is territorial and generally a solitary but social predator, \n                requiring large contiguous areas of habitat to support its requirements \n                for prey and rearing of its offspring. Tiger cubs stay with their mother \n                for about two years and then become independent, leaving their mother\'s home \n                range to establish their own.</string>
+    <string name="tiger_wikipedia_link">https://en.wikipedia.org/wiki/Tiger</string>
 </resources>

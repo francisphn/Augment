@@ -77,9 +77,9 @@ fun AnimalProfileImage(it: Model, backgroundColour: Color, size: Dp) {
 fun AnimalProfileImagePreview() {
     AnimalProfileImage(it = Model(
         id = 11L,
-        categoryName = "User",
+        categoryName = stringResource(R.string.user),
         description = "",
-        name = "Tiger",
-        imageUriAsString = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Echinoderm_collage_2.jpg/220px-Echinoderm_collage_2.jpg"
+        name = stringResource(R.string.tiger),
+        imageUriAsString = stringResource(R.string.https_upload_wikimedia_org_wikipedia_commons_thumb_5_52_echinoderm_collage_2_jpg_220px_echinoderm_collage_2_jpg)
     ), backgroundColour = Color.White, size = 140.dp)
 }

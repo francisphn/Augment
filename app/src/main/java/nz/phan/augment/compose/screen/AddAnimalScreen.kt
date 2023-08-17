@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +36,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import nz.phan.augment.R
 import nz.phan.augment.compose.shared.BackButton
 
 import nz.phan.augment.data.models
@@ -49,15 +51,18 @@ fun AddAnimal(thisAnimalId: Long,
               context: Context,
               backAction: () -> Unit,
               onSave: (nz.phan.augment.entity.Model) -> Unit) {
+    val toastMessage = stringResource(R.string.your_animal_is_saved)
+
     var animalName by remember { mutableStateOf("") }
     var animalDescription by remember { mutableStateOf("") }
     var animalPhotoUrlAsString by remember { mutableStateOf("") }
 
+    val defaultCategoryName = stringResource(R.string.user_provided_animal)
 
     val model by remember { mutableStateOf(nz.phan.augment.entity.Model(
         id = thisAnimalId,
         name = "",
-        categoryName = "User-provided animal",
+        categoryName = defaultCategoryName,
         imageUriAsString = "",
         description = "",
     )) }
@@ -65,15 +70,15 @@ fun AddAnimal(thisAnimalId: Long,
     data class Field(val fieldName: String, val value: String, val action: (String) -> Unit)
 
     val textFields = listOf(
-        Field("Animal name", animalName) {
+        Field(stringResource(R.string.animal_name), animalName) {
             model.name = it.trim()
             animalName = it
                                          },
-        Field("Animal description", animalDescription) {
+        Field(stringResource(R.string.animal_description), animalDescription) {
             model.description = it.trim()
             animalDescription = it
                                                        },
-        Field("HTTPS link to an internet photo", animalPhotoUrlAsString ) {
+        Field(stringResource(R.string.https_link_to_an_internet_photo), animalPhotoUrlAsString ) {
             model.imageUriAsString = it
             animalPhotoUrlAsString = it
                                                                           },
@@ -90,7 +95,7 @@ fun AddAnimal(thisAnimalId: Long,
 
         item {
             Text(
-                text = "Add a new animal",
+                text = stringResource(R.string.add_a_new_animal),
                 style = Typography.displayLarge,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -101,7 +106,7 @@ fun AddAnimal(thisAnimalId: Long,
         item {
             Text(
                 modifier = Modifier.padding(top = 50.dp),
-                text = "Details".uppercase(),
+                text = stringResource(R.string.details).uppercase(),
                 style = Typography.bodyLarge.plus( TextStyle(fontWeight = FontWeight.Bold ))
             )
         }
@@ -132,7 +137,7 @@ fun AddAnimal(thisAnimalId: Long,
                     contentColor = Color.White
                 ),
             ) {
-                Text(text = "Paste link", style = Typography.labelMedium.plus(TextStyle(color = Color.White)))
+                Text(text = stringResource(R.string.paste_link), style = Typography.labelMedium.plus(TextStyle(color = Color.White)))
             }
         }
 
@@ -140,12 +145,12 @@ fun AddAnimal(thisAnimalId: Long,
             Column {
                 Text(
                     modifier = Modifier.padding(top = 50.dp),
-                    text = "When you're ready".uppercase(),
+                    text = stringResource(R.string.when_you_re_ready).uppercase(),
                     style = Typography.bodyLarge.plus( TextStyle(fontWeight = FontWeight.Bold ))
                 )
 
                 Text(
-                    text = "Your animal will be saved as long as the app is not quit."
+                    text = stringResource(R.string.your_animal_will_be_saved_as_long_as_the_app_is_not_quit)
                 )
             }
 
@@ -157,7 +162,8 @@ fun AddAnimal(thisAnimalId: Long,
 
             Button(onClick = {
                 onSave(model)
-                Toast.makeText(context, "Your animal is saved!", Toast.LENGTH_LONG).show()
+
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
             }, modifier = Modifier.padding(top = 20.dp, bottom = 100.dp),
                 colors = ButtonDefaults.buttonColors(
                 containerColor = Blue500,
@@ -168,7 +174,7 @@ fun AddAnimal(thisAnimalId: Long,
                     animalPhotoUrlAsString
                 ).none { it == "" }
             ) {
-                Text(text = "Save ${model.name}", style = Typography.labelMedium.plus(TextStyle(color = Color.White)))
+                Text(text = stringResource(R.string.save, model.name), style = Typography.labelMedium.plus(TextStyle(color = Color.White)))
             }
         }
 
