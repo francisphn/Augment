@@ -1,5 +1,6 @@
 package nz.phan.augment.compose.screen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -60,6 +61,7 @@ import nz.phan.augment.ui.theme.Blue50
 import nz.phan.augment.ui.theme.Blue500
 import nz.phan.augment.ui.theme.Typography
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>, settingsAction: () -> Unit) {
@@ -87,7 +89,6 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                 Modifier
                     .fillMaxSize()
                     .background(Color.White)
-                    .padding(it)
                     .padding(horizontal = 20.dp)) {
                 item {
                     Text(
