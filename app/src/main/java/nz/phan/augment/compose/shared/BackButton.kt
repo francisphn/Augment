@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import nz.phan.augment.R
@@ -25,6 +26,7 @@ fun BackButton(backAction: () -> Unit) {
             .noRippleClickable { backAction.invoke() }) {
         Icon(
             Icons.Rounded.ArrowBack,
+            tint = Color.DarkGray,
             contentDescription = stringResource(R.string.back_icon_alt_text)
         )
 
