@@ -49,7 +49,7 @@ class ArActivity : AppCompatActivity(R.layout.activity_ar) {
 
         val models = modelResources.map { it -> it.toModel(action = { r -> getString(r) } ) }
 
-        val extras: Bundle? = intent.extras;
+        val extras: Bundle? = intent.extras
 
         if (extras != null) {
             val modelId = extras.getLong("modelId")

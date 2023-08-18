@@ -8,7 +8,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.core.content.res.ResourcesCompat
 import nz.phan.augment.R
 
 val ibmPlexSansFamily = FontFamily(
@@ -88,13 +87,11 @@ val Typography = Typography(
         letterSpacing = 0.sp
     ),
 
-    /* Other default text styles to override
     labelSmall = TextStyle(
-    fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.Medium,
-    fontSize = 11.sp,
-    lineHeight = 16.sp,
-    letterSpacing = 0.5.sp
+        fontFamily = ibmPlexSansFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 11.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
     )
-    */
 )

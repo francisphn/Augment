@@ -20,11 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import nz.phan.augment.R
 import nz.phan.augment.entity.Model
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun AnimalProfileImage(it: Model, backgroundColour: Color, size: Dp) {
     if (it.imageResId != null) {

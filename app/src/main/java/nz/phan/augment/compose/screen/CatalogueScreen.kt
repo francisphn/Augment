@@ -1,9 +1,5 @@
-
-
 package nz.phan.augment.compose.screen
 
-
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -64,9 +60,6 @@ import nz.phan.augment.ui.theme.Blue50
 import nz.phan.augment.ui.theme.Blue500
 import nz.phan.augment.ui.theme.Typography
 
-
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>, settingsAction: () -> Unit) {
@@ -77,8 +70,6 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
     var dropdownOpen by remember { mutableStateOf(false) }
     var category by remember { mutableStateOf(initialCategory) }
     var displayingModels by remember { mutableStateOf(models.toList()) }
-
-    var language by remember { mutableStateOf(context.resources.configuration.locales) }
 
     Scaffold(
         floatingActionButtonPosition = FabPosition.End,
@@ -96,6 +87,7 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
                 Modifier
                     .fillMaxSize()
                     .background(Color.White)
+                    .padding(it)
                     .padding(horizontal = 20.dp)) {
                 item {
                     Text(
@@ -240,7 +232,7 @@ fun Catalogue(context: Context, itemAction: (Model) -> Unit, models: List<Model>
 @Composable
 fun CataloguePreview() {
     val context = LocalContext.current
-    val models = modelResources.map { it -> it.toModel(action = { r -> stringResource(id = r) } ) }
+    val models = modelResources.map { it.toModel(action = { r -> stringResource(id = r) } ) }
 
     AugmentTheme {
         val navController = rememberNavController()
