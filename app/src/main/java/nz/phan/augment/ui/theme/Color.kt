@@ -12,3 +12,5 @@ val Blue300 = Color(0xFF64B5F6)
 val Blue200 = Color(0xFF90CAF9)
 val Blue100 = Color(0xFFBBDEFB)
 val Blue50 = Color(0xFFE3F2FD)
+
+val Translucent = Color(0x3F000000)

@@ -28,6 +28,7 @@ import nz.phan.augment.entity.Model
 import nz.phan.augment.entity.toModel
 
 import nz.phan.augment.ui.theme.AugmentTheme
+import nz.phan.augment.ui.theme.Translucent
 
 
 class HomeFragment : Fragment() {
@@ -50,7 +51,7 @@ class HomeFragment : Fragment() {
 
                     SideEffect {
                         systemUiController.setStatusBarColor(
-                            color = Color.Transparent,
+                            color = Translucent,
                             darkIcons = true,
                         )
 
