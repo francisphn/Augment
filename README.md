@@ -1,7 +1,9 @@
 # Augment
 
 Augment is an Android application with AR (augmented reality) capabilities aimed at children, parents and teachers. Augment brings the zoo to your own home and school and makes it more accessible than ever to learn about animals.
-Augment starts by letting you pick from a catalogue of zoo animals. After you’ve selected one, you can then read through its information on a dedicated screen. Finally, you can enter AR mode which lets you place the realistic 3D animal in your real life environment. The first video attached is worth a watch of me demonstrating this feature :point_down:
+
+Augment starts by letting you pick from a catalogue of zoo animals. After you’ve selected one, you can then read through its information on a dedicated screen. Finally, you can enter AR mode which lets you place the realistic 3D animal in your real life environment.
+
 These AR capabilities have been implemented using Google ARCore. I’m personally very enthused by VR/AR which is why I have chosen to implement this. Also, Augment allows you to create your own animal too, but with limited time I have decided not to support uploading a custom 3D model.
 
 ## Development process
