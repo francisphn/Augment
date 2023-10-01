@@ -6,6 +6,17 @@ Augment starts by letting you pick from a catalogue of zoo animals. After you’
 
 These AR capabilities have been implemented using Google ARCore. I’m personally very enthused by VR/AR which is why I have chosen to implement this. Also, Augment allows you to create your own animal too, but with limited time I have decided not to support uploading a custom 3D model.
 
+## Photos
+
+See folder `photos` for what the app looks like.
+
+## Running the app
+
+1. Make sure you have the tooling needed to develop and run Android apps, including Android Studio,
+a virtual device with API 33 or higher and Gradle. 
+
+2. To run the app, clone the repository and open in Android Studio.
+
 ## Development process
 
 ### Feasibility study
